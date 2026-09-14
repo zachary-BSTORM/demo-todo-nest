@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpCode, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, ParseIntPipe, Post, Put, UnauthorizedException } from '@nestjs/common';
 import { TodosService } from './todos.service.js';
 import { CreateTodo } from './dtos/create-todo.dto.js';
 import { Todo } from './entities/todo.entity.js';
@@ -31,7 +31,7 @@ export class TodosController {
     @Put(':id')
     update(
         @Param('id', ParseIntPipe) id : number,
-        @Body() updatedTodoDto : UpdateTodo
+        @Body() updatedTodoDto : UpdateTodo,
     ) : Todo{
        return this.todoService.update(id,updatedTodoDto)
     }
